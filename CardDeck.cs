@@ -16,13 +16,21 @@ class CardDeck
         }
     }
 
-    public List<string> draw(List<string> cards) // Draws a card from the deck at random
+    public string draw(List<string> cards) // Draws a card from the deck at random
     {
-        var random = new Random();
-        int i = random.Next(cards.Count);
-        string drawn = cards[i];
-        cards.Remove(drawn);
-        return drawn;
+        if (cards.Count > 0)
+        {
+            var random = new Random();
+            int i = random.Next(cards.Count);
+            string drawn = cards[i];
+            cards.Remove(drawn);
+            return drawn;
+        }
+        else
+        {
+            return "out";
+        }
+        
     }
 
     public int convert(string drawn) // Convert card names into number for the game

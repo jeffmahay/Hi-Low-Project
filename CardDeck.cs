@@ -1,6 +1,6 @@
 class CardDeck
 {
-    List<string> cards = new List<string>(); // Creates the data type for the cards to be stored in
+    public List<string> cards = new List<string>(); // Creates the data type for the cards to be stored in
 
     public CardDeck() // Digitally creates the card deck
     {

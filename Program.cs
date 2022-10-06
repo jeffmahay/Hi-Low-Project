@@ -11,10 +11,13 @@
         // Creates a variable to hold the deck of cards created in the CardDeck file //
         List<string> cards = deck.cards;
 
+        // Getting the first card
+        int first = cardDrawn(cards);
+
         // Keep playing the game until its over //
         while(IsOver(score, cards) != true)
         {
-            terminalDialogue(score, cards);
+            terminalDialogue(score, cards, first);
             playAgain();
         }
     }
@@ -55,11 +58,10 @@
     }
 
     // Holds all the console.writeline code, as well as the score calculator. //
-    public static void terminalDialogue(int score, List<string> cards)
+    public static void terminalDialogue(int score, List<string> cards, int first)
     {
         CardDeck deck = new CardDeck();
-        
-        int first = cardDrawn(cards);
+
         int second = cardDrawn(cards);
 
         Console.WriteLine($"The card is: {first}");
@@ -70,6 +72,8 @@
         scoreCalculator(input, first, second, score);
 
         Console.WriteLine($"Your score is: {score}");
+
+        first = second;
     }
 
     // checks if the first instance of the deck drawn is greater or lower, and compares that with the user's input //

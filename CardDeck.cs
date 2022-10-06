@@ -43,25 +43,25 @@ class CardDeck
     public int convert(string drawn) // Convert card names into number for the game
     {
         string[] parts = drawn.Split(" of ");
-        if (parts[1] == "Ace")
+        if (parts[0] == "Ace")
         {
             return 13;
         }
-        else if (parts[1] == "Jack")
+        else if (parts[0] == "Jack")
         {
             return 10;
         }
-        else if (parts[1] == "Queen")
+        else if (parts[0] == "Queen")
         {
             return 11;
         }
-        else if (parts[1] == "King")
+        else if (parts[0] == "King")
         {
             return 12;
         }
         else
         {
-            return int.Parse(parts[1]);
+            return int.Parse(parts[0]);
         }
     }
 }

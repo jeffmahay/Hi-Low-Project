@@ -61,7 +61,7 @@ class CardDeck
         }
         else
         {
-            return int.Parse(parts[0]);
+            return int.Parse(parts[0]) - 1;
         }
     }
 }

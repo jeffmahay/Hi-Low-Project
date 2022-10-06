@@ -4,15 +4,22 @@ class CardDeck
 
     public CardDeck() // Digitally creates the card deck
     {
-        string[] suits = {"Hearts", "Spades", "Clubs", "Diamonds"};
-        string[] faces = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
-
-        foreach (string a in suits)
+        if (cards.Count == 0)
         {
-            foreach (string b in faces)
+            string[] suits = {"Hearts", "Spades", "Clubs", "Diamonds"};
+            string[] faces = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+
+            foreach (string a in suits)
             {
-                cards.Add($"{b} of {a}");
+                foreach (string b in faces)
+                {
+                    cards.Add($"{b} of {a}");
+                }
             }
+        }
+        else
+        {
+            return;
         }
     }
 

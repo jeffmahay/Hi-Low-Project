@@ -64,7 +64,7 @@
 
         Console.WriteLine($"The card is: {first}");
         Console.WriteLine("Higher or lower? [h/l]");
-        string? input = Console.ReadLine();
+        string? input = Console.ReadLine() ?? "";
         Console.WriteLine($"Next card was: {second}");
 
         scoreCalculator(input, first, second, score);

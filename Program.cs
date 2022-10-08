@@ -12,21 +12,30 @@
         List<string> cards = deck.cards;
 
         // Getting the first card
-        int first = cardDrawn(cards);
+        string firstCard = cardDrawn(cards);
+
+        // Getting the drawn cards
+        List<string> drawn = new List<string>();
+        drawn.Add(firstCard);
+
+        // Initial choice
+        bool choice = false;
 
 
 
         // Keep playing the game until its over //
-        while(IsOver(score, cards) != true)
+        while(IsOver(score, cards, choice) != true)
         {
-            terminalDialogue(score, cards, first);
-            playAgain();
+            int change = terminalDialogue(score, cards, drawn);
+            bool decision = playAgain();
+            int points = score + change;
+            IsOver(points, cards, decision);
         }
         
     }
 
     // Function that checks if the conditions of a game over are met //
-    public static bool IsOver(int score, List<string> cards)
+    public static bool IsOver(int score, List<string> cards, bool choice)
     {
         CardDeck deck = new CardDeck();
 
@@ -38,6 +47,13 @@
         {
             return true;
         }
+<<<<<<< HEAD
+=======
+        else if(choice == true)
+        {
+            return false;
+        }
+>>>>>>> 2502355d005f3f6348760317196c5066905dcb0f
         else
         {
             return true;
@@ -45,58 +61,60 @@
     }
 
     // Draws a card from the deck and returns said card as an integer //
-    public static int cardDrawn(List<string> cards)
+    public static string cardDrawn(List<string> cards)
     {
         CardDeck deck = new CardDeck();
 
         string card = deck.draw(cards);
 
-        int cardNumber = deck.convert(card);
-
-        return cardNumber;
+        return card;
     }
 
     // Holds all the console.writeline code, as well as the score calculator. //
-    public static void terminalDialogue(int score, List<string> cards, int first)
+    public static int terminalDialogue(int score, List<string> cards, List<string>drawn)
     {
         CardDeck deck = new CardDeck();
 
-        int second = cardDrawn(cards);
+        string next = cardDrawn(cards);
+        
+        int first = deck.convert(drawn[-1]);
+        int second = deck.convert(next);
 
-        Console.WriteLine($"The card is: {first}");
-        Console.WriteLine("Higher or lower? [h/l]");
+        Console.WriteLine($"The last card is: {drawn[-1]}");
+        Console.WriteLine($"Higher or lower? [h/l]");
         string? input = Console.ReadLine() ?? "";
-        Console.WriteLine($"Next card was: {second}");
-
-        scoreCalculator(input, first, second, score);
-
-        Console.WriteLine($"Your score is: {score}");
-
-        first = second;
+        Console.WriteLine($"The next card is: {next}");
+        int change = scoreCalculator(input, first, second, score);
+        return change;
     }
 
     // checks if the first instance of the deck drawn is greater or lower, and compares that with the user's input //
-    public static void scoreCalculator(string input, int first, int second, int score)
+    public static int scoreCalculator(string input, int first, int second, int score)
     {
         if(input == "h" && second > first)
         {
-            score += 100;
+            return 100;
         }
         else if(input == "h" && second < first)
         {
-            score -= 75;
+            return -75;
         }
         else if(input == "l" && second < first)
         {
-            score += 100;
+            return 100;
         }
         else if(input == "l" && second > first)
         {
-            score -= 75;
+            return -75;
         }
         else if(input != "l" || input != "h")
         {
             Console.WriteLine("ERROR");
+            return 0;
+        }
+        else
+        {
+            return 0;
         }
     }
 

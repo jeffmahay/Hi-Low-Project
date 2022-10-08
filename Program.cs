@@ -14,12 +14,15 @@
         // Getting the first card
         int first = cardDrawn(cards);
 
+
+
         // Keep playing the game until its over //
         while(IsOver(score, cards) != true)
         {
             terminalDialogue(score, cards, first);
             playAgain();
         }
+        
     }
 
     // Function that checks if the conditions of a game over are met //
@@ -34,10 +37,6 @@
         else if(deck.draw(cards) == "over")
         {
             return true;
-        }
-        else if(playAgain() == true)
-        {
-            return false;
         }
         else
         {
